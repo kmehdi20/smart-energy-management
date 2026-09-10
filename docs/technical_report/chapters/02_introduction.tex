@@ -1,0 +1,41 @@
+\chapter{Introduction}
+\label{ch:introduction}
+
+\section{Context}
+
+The global energy transition toward renewable sources has accelerated in recent years, with solar photovoltaic (PV) installations reaching over 1.6~TW of cumulative capacity worldwide by 2024 \cite{irena2023}. Morocco, through its National Energy Strategy 2030, has committed to achieving 52\% of installed electricity capacity from renewable sources \cite{morocco_energy}. The country's solar potential, particularly in cities such as Meknès, Fès, and Marrakech, makes rooftop PV a viable option for residential and commercial buildings.
+
+However, the integration of distributed PV generation into buildings introduces challenges. Solar production is intermittent and does not naturally align with consumption patterns: PV generation peaks at midday while residential demand peaks in the evening. Without intelligent management, a significant portion of PV energy is either curtailed or exported at unfavorable rates, reducing the economic value of the installation.
+
+Battery energy storage systems (BESS) partially address this mismatch by storing surplus PV energy for later use. However, the effectiveness of a BESS depends heavily on its dispatch strategy. A simple rule-based approach---charge when there is surplus, discharge when there is deficit---fails to account for future consumption and production patterns, leading to suboptimal battery utilization.
+
+\section{Motivation}
+
+This project is motivated by the observation that the combination of three technologies---machine learning forecasting, mathematical optimization, and IoT-based real-time monitoring---can significantly improve the performance of a building energy management system compared to conventional reactive strategies.
+
+Specifically:
+\begin{enumerate}[nosep]
+    \item \textbf{Forecasting} enables proactive rather than reactive energy dispatch.
+    \item \textbf{Optimization} finds the mathematically best schedule given forecasts and constraints.
+    \item \textbf{IoT monitoring} provides the real-time data foundation for both.
+\end{enumerate}
+
+The academic motivation is to integrate knowledge from renewable energy engineering, electrical engineering, embedded systems, database design, machine learning, and optimization into a single coherent engineering project.
+
+\section{Objectives}
+
+The primary objectives of this project are:
+
+\begin{enumerate}
+    \item Design and implement a real-time energy monitoring system using ESP32 and appropriate sensors.
+    \item Build a data pipeline that stores, processes, and visualizes energy measurements.
+    \item Develop machine learning models that forecast building energy consumption and PV production.
+    \item Implement an anomaly detection system for identifying unusual energy patterns.
+    \item Design and implement an optimization-based energy management system using MILP.
+    \item Quantitatively compare the optimized EMS against a conventional rule-based baseline.
+    \item Present the complete system on a professional dashboard.
+\end{enumerate}
+
+\section{Report Structure}
+
+This report is organized as follows. Chapter~\ref{ch:problem} defines the problem statement. Chapter~\ref{ch:literature} reviews relevant literature. Chapter~\ref{ch:architecture} presents the system architecture. Chapters~\ref{ch:pv}--\ref{ch:data} detail the PV system, energy management model, IoT architecture, and data acquisition. Chapters~\ref{ch:ml}--\ref{ch:optimization} describe the machine learning methodology, forecasting, anomaly detection, and optimization. Chapter~\ref{ch:simulation} presents the simulation environment. Chapter~\ref{ch:implementation} covers the software implementation. Chapter~\ref{ch:results} presents and analyzes the experimental results. Chapters~\ref{ch:economic} and \ref{ch:environmental} provide economic and environmental analyses. Chapter~\ref{ch:limitations} discusses limitations, and Chapter~\ref{ch:conclusion} concludes with future work.

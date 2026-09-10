@@ -1,0 +1,62 @@
+\chapter{Photovoltaic System}
+\label{ch:pv}
+
+\section{System Specifications}
+
+The reference PV system is a 4~kWp rooftop installation with the parameters in Table~\ref{tab:pv_specs}.
+
+\begin{table}[H]
+\centering
+\caption{PV system parameters.}
+\label{tab:pv_specs}
+\begin{tabular}{lll}
+\toprule
+\textbf{Parameter} & \textbf{Value} & \textbf{Unit} \\
+\midrule
+Peak power & 4,000 & Wp \\
+Panel tilt & 30 & degrees \\
+Azimuth & 0 (due south) & degrees \\
+Temperature coefficient & $-0.004$ & /°C \\
+Inverter efficiency & 96 & \% \\
+STC irradiance & 1,000 & W/m$^2$ \\
+STC temperature & 25 & °C \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{PV Power Model}
+
+The PV power output is modeled as:
+
+\begin{equation}
+    P_{\text{PV}}(t) = P_{\text{peak}} \cdot \frac{G(t)}{G_{\text{STC}}} \cdot \left(1 + \gamma \cdot (T_{\text{cell}}(t) - T_{\text{STC}})\right) \cdot \eta_{\text{inv}}
+    \label{eq:pv_power}
+\end{equation}
+
+where:
+\begin{itemize}[nosep]
+    \item $P_{\text{peak}}$ = rated PV capacity (4,000~W)
+    \item $G(t)$ = global horizontal irradiance at time $t$ (W/m$^2$)
+    \item $G_{\text{STC}}$ = 1,000~W/m$^2$
+    \item $\gamma$ = temperature coefficient ($-0.004$~/°C)
+    \item $T_{\text{cell}}(t)$ = cell temperature (°C)
+    \item $T_{\text{STC}}$ = 25~°C
+    \item $\eta_{\text{inv}}$ = inverter efficiency (0.96)
+\end{itemize}
+
+The cell temperature is estimated using the simplified NOCT model:
+
+\begin{equation}
+    T_{\text{cell}}(t) = T_{\text{ambient}}(t) + 0.03 \cdot G(t)
+    \label{eq:tcell}
+\end{equation}
+
+\section{Clear-Sky Irradiance Model}
+
+For the simulation, clear-sky irradiance is computed using solar geometry (declination, hour angle, solar elevation) and a simplified atmospheric transmittance model. Cloud cover is applied as a multiplicative factor:
+
+\begin{equation}
+    G(t) = G_{\text{clear}}(t) \cdot (1 - 0.75 \cdot C_{\text{cloud}})
+\end{equation}
+
+where $C_{\text{cloud}} \in [0, 1]$ represents fractional cloud cover.

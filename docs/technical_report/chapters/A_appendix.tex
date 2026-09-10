@@ -1,0 +1,93 @@
+\chapter{Appendices}
+\label{ch:appendix}
+
+\section{Database Schema}
+
+The database contains 10 tables:
+
+\begin{itemize}[nosep]
+    \item \texttt{devices} --- registered data sources (ESP32, simulator)
+    \item \texttt{measurements} --- AC load measurements (V, I, P, E, PF, f)
+    \item \texttt{pv\_measurements} --- PV voltage, current, power
+    \item \texttt{battery\_status} --- battery voltage, current, SOC
+    \item \texttt{environmental\_data} --- temperature, humidity, irradiance
+    \item \texttt{energy\_flows} --- consolidated energy flow per time step
+    \item \texttt{predictions} --- ML forecast values with actuals
+    \item \texttt{optimization\_results} --- EMS dispatch schedules (JSONB)
+    \item \texttt{alerts} --- anomaly detection alerts with severity
+    \item \texttt{daily\_performance} --- aggregated daily metrics
+\end{itemize}
+
+All timestamp columns are indexed. The schema supports both SQLite (development) and PostgreSQL (production).
+
+\section{Project Directory Structure}
+
+\begin{verbatim}
+smart-energy-management/
+├── simulation/         # Synthetic data generation
+│   ├── profiles/       # Weather, PV, load generators
+│   ├── battery_sim.py  # SOC model + rule-based dispatch
+│   ├── simulator.py    # Main orchestrator
+│   └── scenarios.py    # Predefined test scenarios
+├── backend/            # FastAPI + MQTT + database
+│   └── app/            # Models, schemas, API, services
+├── ml/
+│   ├── preprocessing/  # Clean, features, split
+│   ├── forecasting/    # Train, evaluate, plots
+│   └── anomaly_detection/  # Statistical + Isolation Forest
+├── optimization/       # Rule-based + MILP optimizer
+├── dashboard/          # Streamlit (8 pages)
+├── analysis/           # Performance report generation
+├── tests/              # 47 unit tests (pytest)
+├── database/           # SQL schema
+├── config/             # settings.yaml
+└── docs/               # This report
+\end{verbatim}
+
+\section{Environment Variables}
+
+\begin{verbatim}
+DATABASE_URL=sqlite:///data/smart_energy.db
+MQTT_ENABLED=false
+MQTT_BROKER_HOST=localhost
+MQTT_BROKER_PORT=1883
+MQTT_USERNAME=energy_mqtt
+MQTT_PASSWORD=<secret>
+LOG_LEVEL=INFO
+\end{verbatim}
+
+\section{How to Run}
+
+\begin{enumerate}[nosep]
+    \item Install dependencies: \texttt{pip install -r backend/requirements.txt}
+    \item Generate data: \texttt{python -m simulation.simulator --days 365}
+    \item Load database: \texttt{python -m backend.app.services.data\_ingestion --csv ml/data/raw/synthetic\_365d.csv}
+    \item Run forecasting: \texttt{python -m ml.forecasting.run --csv ml/data/raw/synthetic\_365d.csv --target consumption}
+    \item Run anomaly detection: \texttt{python -m ml.anomaly\_detection.run --csv ml/data/raw/synthetic\_365d.csv}
+    \item Run optimization: \texttt{python -m optimization.run --csv ml/data/raw/synthetic\_365d.csv}
+    \item Run analysis: \texttt{python -m analysis.run --csv ml/data/raw/synthetic\_365d.csv}
+    \item Start dashboard: \texttt{streamlit run dashboard/app.py}
+    \item Start API: \texttt{uvicorn backend.app.main:app --port 8000}
+    \item Run tests: \texttt{pytest tests/ -v}
+\end{enumerate}
+
+\section{Test Summary}
+
+47 unit tests across 5 test files, all passing:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\toprule
+\textbf{Test File} & \textbf{Tests} \\
+\midrule
+\texttt{test\_energy\_balance.py} & 5 \\
+\texttt{test\_battery\_model.py} & 7 \\
+\texttt{test\_preprocessing.py} & 9 \\
+\texttt{test\_optimization.py} & 8 \\
+\texttt{test\_simulation.py} & 18 \\
+\midrule
+\textbf{Total} & \textbf{47} \\
+\bottomrule
+\end{tabular}
+\end{table}

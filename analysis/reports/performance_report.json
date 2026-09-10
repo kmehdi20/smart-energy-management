@@ -1,0 +1,161 @@
+{
+  "energy": {
+    "period_days": 365.0,
+    "pv_generation_kwh": 5252.6,
+    "load_consumption_kwh": 10873.0,
+    "grid_import_kwh": 6367.2,
+    "pv_to_load_kwh": 3374.2,
+    "pv_to_battery_kwh": 1118.9,
+    "battery_to_load_kwh": 1011.8,
+    "pv_curtailed_kwh": 793.4,
+    "battery_charge_kwh": 1118.9,
+    "battery_discharge_kwh": 1011.8,
+    "self_consumption_pct": 85.5,
+    "self_sufficiency_pct": 41.4,
+    "peak_load_w": 16935.0,
+    "peak_pv_w": 3143.0,
+    "peak_grid_w": 5229.0,
+    "avg_soc_pct": 26.9,
+    "min_soc_pct": 10.0,
+    "max_soc_pct": 95.0,
+    "daily_pv_kwh": 14.4,
+    "daily_load_kwh": 29.8,
+    "daily_grid_kwh": 17.4
+  },
+  "economic": {
+    "tariff_mad_kwh": 1.2,
+    "total_cost_mad": 7640.64,
+    "daily_cost_mad": 20.93,
+    "monthly_cost_mad": 628.0,
+    "annual_cost_mad": 7640.64,
+    "co2_factor_kg_kwh": 0.65,
+    "co2_total_kg": 4138.7,
+    "co2_daily_kg": 11.34,
+    "co2_annual_kg": 4138.7
+  },
+  "forecasting": {
+    "consumption_xgboost": {
+      "target": "consumption",
+      "model": "xgboost",
+      "mae_w": 37.9,
+      "rmse_w": 73.2,
+      "mape_pct": 3.2,
+      "r2": 0.9941,
+      "test_samples": 5156
+    },
+    "consumption": {
+      "target": "consumption",
+      "model": "xgboost",
+      "mae_w": 37.9,
+      "rmse_w": 73.2,
+      "mape_pct": 3.2,
+      "r2": 0.9941,
+      "test_samples": 5156
+    },
+    "consumption_random_forest": {
+      "target": "consumption",
+      "model": "random_forest",
+      "mae_w": 39.3,
+      "rmse_w": 78.4,
+      "mape_pct": 3.3,
+      "r2": 0.9932,
+      "test_samples": 5156
+    },
+    "consumption_linear_regression": {
+      "target": "consumption",
+      "model": "linear_regression",
+      "mae_w": 108.5,
+      "rmse_w": 150.4,
+      "mape_pct": 15.2,
+      "r2": 0.9749,
+      "test_samples": 5156
+    },
+    "pv_xgboost": {
+      "target": "pv",
+      "model": "xgboost",
+      "mae_w": 4.6,
+      "rmse_w": 8.8,
+      "mape_pct": 1.8,
+      "r2": 0.9999,
+      "test_samples": 5242
+    },
+    "pv": {
+      "target": "pv",
+      "model": "linear_regression",
+      "mae_w": 0.0,
+      "rmse_w": 0.0,
+      "mape_pct": 0.0,
+      "r2": 1.0,
+      "test_samples": 5242
+    },
+    "pv_random_forest": {
+      "target": "pv",
+      "model": "random_forest",
+      "mae_w": 0.1,
+      "rmse_w": 0.9,
+      "mape_pct": 0.0,
+      "r2": 1.0,
+      "test_samples": 5242
+    },
+    "pv_linear_regression": {
+      "target": "pv",
+      "model": "linear_regression",
+      "mae_w": 0.0,
+      "rmse_w": 0.0,
+      "mape_pct": 0.0,
+      "r2": 1.0,
+      "test_samples": 5242
+    }
+  },
+  "anomaly_detection": {
+    "statistical": {
+      "precision": 0.0848,
+      "recall": 0.7097,
+      "f1": 0.1515,
+      "true_positives": 44,
+      "false_positives": 475
+    },
+    "isolation_forest": {
+      "precision": 0.0158,
+      "recall": 0.0968,
+      "f1": 0.0271,
+      "true_positives": 6,
+      "false_positives": 374
+    }
+  },
+  "optimization": {
+    "baseline": {
+      "strategy": "Rule-Based (Baseline)",
+      "grid_import_kwh": 213.1,
+      "pv_generation_kwh": 328.8,
+      "load_consumption_kwh": 480.7,
+      "self_consumption_pct": 81.4,
+      "self_sufficiency_pct": 55.7,
+      "total_cost_mad": 255.74,
+      "daily_avg_cost_mad": 18.27,
+      "peak_grid_w": 14065.0,
+      "co2_kg": 138.5,
+      "co2_daily_kg": 9.89
+    },
+    "optimized": {
+      "strategy": "MILP-Optimized",
+      "grid_import_kwh": 165.1,
+      "pv_generation_kwh": 328.8,
+      "load_consumption_kwh": 480.7,
+      "self_consumption_pct": 96.0,
+      "self_sufficiency_pct": 65.7,
+      "total_cost_mad": 244.8,
+      "daily_avg_cost_mad": 17.49,
+      "peak_grid_w": 8840.0,
+      "co2_kg": 107.3,
+      "co2_daily_kg": 7.67
+    },
+    "improvement": {
+      "grid_reduction_pct": 22.5,
+      "cost_reduction_pct": 4.3,
+      "peak_reduction_pct": 37.1,
+      "co2_reduction_pct": 22.5,
+      "self_consumption_gain_pp": 14.6
+    }
+  }
+}

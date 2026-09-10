@@ -1,0 +1,39 @@
+# Environment
+.env
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data (keep structure, ignore large files)
+ml/data/raw/*.csv
+!ml/data/raw/.gitkeep
+ml/models/*.joblib
+
+# Docker volumes
+postgres_data/
+mosquitto_data/
+mosquitto_log/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+data/
+

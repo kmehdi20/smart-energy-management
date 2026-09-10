@@ -1,0 +1,98 @@
+# ============================================================
+# Smart Energy Management System — Configuration
+# ============================================================
+
+# --- Location ---
+location:
+  name: "Meknès, Morocco"
+  latitude: 33.9       # °N
+  longitude: -5.55      # °E
+  timezone: "Africa/Casablanca"
+  altitude_m: 550
+
+# --- PV System ---
+pv:
+  peak_power_w: 4000          # 4 kWp installation
+  temperature_coeff: -0.004   # %/°C (crystalline Si)
+  inverter_efficiency: 0.96
+  tilt_deg: 30                # panel tilt from horizontal
+  azimuth_deg: 0              # 0 = due south
+  stc_irradiance_wm2: 1000
+  stc_temperature_c: 25
+
+# --- Battery ---
+battery:
+  capacity_kwh: 5.12          # LiFePO4 48V/100Ah
+  nominal_voltage_v: 48
+  soc_min_pct: 10
+  soc_max_pct: 95
+  max_charge_power_w: 2500    # 0.5C
+  max_discharge_power_w: 2500
+  charge_efficiency: 0.95
+  discharge_efficiency: 0.95
+  initial_soc_pct: 50
+
+# --- Loads ---
+loads:
+  critical:
+    - name: "Refrigerator"
+      power_w: 150
+      daily_hours: 24          # runs continuously (compressor cycles ~8h effective)
+      effective_daily_kwh: 1.2
+    - name: "Essential Lighting"
+      power_w: 100
+      daily_hours: 6
+    - name: "Router"
+      power_w: 15
+      daily_hours: 24
+
+  non_critical:
+    - name: "TV"
+      power_w: 80
+      daily_hours: 4
+    - name: "Computer"
+      power_w: 150
+      daily_hours: 5
+    - name: "Air Conditioning"
+      power_w: 1500
+      daily_hours: 6         # summer; 0 in winter
+
+  flexible:
+    - name: "Water Heater"
+      power_w: 2000
+      required_kwh: 3.0
+      duration_hours: 1.5
+      window_start: "08:00"
+      window_end: "20:00"
+    - name: "Washing Machine"
+      power_w: 500
+      required_kwh: 0.75
+      duration_hours: 1.5
+      window_start: "10:00"
+      window_end: "20:00"
+    - name: "Water Pump"
+      power_w: 750
+      required_kwh: 0.75
+      duration_hours: 1.0
+      window_start: "06:00"
+      window_end: "18:00"
+
+# --- Grid / Tariff ---
+tariff:
+  # ONEE residential placeholder — verify from official source
+  currency: "MAD"
+  unit: "kWh"
+  flat_rate_mad_per_kwh: 1.20   # approximate; actual ONEE uses tranches
+  peak_hours: ["18:00", "23:00"]
+  peak_multiplier: 1.5
+
+# --- Simulation ---
+simulation:
+  time_step_minutes: 15
+  default_days: 90              # 3 months of synthetic data
+  noise_std_fraction: 0.05      # 5% Gaussian noise on all signals
+  random_seed: 42
+
+# --- Emissions ---
+emissions:
+  grid_co2_kg_per_kwh: 0.65     # IEA estimate for Morocco, subject to update

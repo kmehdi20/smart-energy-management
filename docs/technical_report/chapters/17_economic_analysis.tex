@@ -1,0 +1,53 @@
+\chapter{Economic Analysis}
+\label{ch:economic}
+
+\section{Assumptions}
+
+\begin{itemize}[nosep]
+    \item Electricity tariff: 1.20~MAD/kWh (ONEE residential estimate --- to be verified from official schedule \cite{onee}).
+    \item Peak tariff: 1.80~MAD/kWh during 18:00--23:00 (used in MILP optimization).
+    \item No feed-in tariff (grid export not modeled).
+    \item All values from synthetic simulation data.
+\end{itemize}
+
+\section{Annual Cost Estimate (Baseline)}
+
+\begin{table}[H]
+\centering
+\caption{Annual electricity cost estimate (rule-based EMS).}
+\begin{tabular}{lr}
+\toprule
+\textbf{Period} & \textbf{Cost (MAD)} \\
+\midrule
+Daily average & 20.93 \\
+Monthly estimate & 628 \\
+Annual estimate & 7,641 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Cost Comparison}
+
+Extrapolating the 14-day optimization results to annual estimates:
+
+\begin{table}[H]
+\centering
+\caption{Annual cost projection: Baseline vs Optimized.}
+\begin{tabular}{lrrr}
+\toprule
+ & \textbf{Baseline} & \textbf{Optimized} & \textbf{Savings} \\
+\midrule
+Daily cost (MAD) & 18.27 & 17.49 & 0.78 \\
+Monthly cost (MAD) & 548 & 525 & 23 \\
+Annual cost (MAD) & 6,669 & 6,384 & 285 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The estimated annual savings of approximately 285~MAD from optimization alone are modest relative to the total electricity cost. This is because: (a)~the flat tariff limits the value of load shifting, and (b)~the baseline already achieves 81\% self-consumption, leaving limited room for improvement. With a stronger time-of-use tariff structure, savings would increase proportionally.
+
+\section{System Investment Context}
+
+The hardware prototype cost (310--440~MAD) is recovered within the first year through optimization savings alone. The PV and battery system investment is outside the scope of this prototype cost analysis but would follow standard payback calculations based on local installation costs.
+
+\textit{Note: All tariff values are estimates. The actual ONEE tariff schedule (which uses consumption tranches for residential customers) should be verified before using these figures in a deployment context.}

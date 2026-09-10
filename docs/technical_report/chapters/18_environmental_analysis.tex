@@ -1,0 +1,63 @@
+\chapter{Environmental Analysis}
+\label{ch:environmental}
+
+\section{Emissions Factor}
+
+Morocco's electricity grid relies on a mix of coal, natural gas, wind, solar, and hydroelectric generation. The grid emissions factor used in this analysis is 0.65~kg~CO$_2$/kWh, based on IEA country-level data for Morocco \cite{iea2024}. This value is subject to annual revision as the renewable share in Morocco's generation mix increases.
+
+\section{Annual CO$_2$ Emissions}
+
+\begin{table}[H]
+\centering
+\caption{Annual CO$_2$ emissions from grid electricity (rule-based baseline).}
+\begin{tabular}{lr}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Grid import & 6,367 kWh/year \\
+CO$_2$ factor & 0.65 kg/kWh \\
+Total CO$_2$ & 4,139 kg/year \\
+Daily average & 11.34 kg/day \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{CO$_2$ Avoided by PV}
+
+Without the PV system, the building would import all 10,873~kWh from the grid, producing:
+
+\begin{equation}
+    \text{CO}_2^{\text{no PV}} = 10{,}873 \times 0.65 = 7{,}067 \text{ kg/year}
+\end{equation}
+
+The PV system avoids:
+
+\begin{equation}
+    \Delta\text{CO}_2^{\text{PV}} = 7{,}067 - 4{,}139 = 2{,}928 \text{ kg/year}
+\end{equation}
+
+This represents a 41.4\% reduction in CO$_2$ emissions from building electricity consumption.
+
+\section{Additional CO$_2$ Avoided by Optimization}
+
+The MILP optimizer further reduces grid imports by 22.5\% compared to the rule-based baseline (extrapolated from the 14-day summer comparison). The additional CO$_2$ reduction is:
+
+\begin{equation}
+    \Delta\text{CO}_2^{\text{EMS}} = 6{,}367 \times 0.225 \times 0.65 = 931 \text{ kg/year (estimated)}
+\end{equation}
+
+\begin{table}[H]
+\centering
+\caption{CO$_2$ emissions summary.}
+\begin{tabular}{lrr}
+\toprule
+\textbf{Scenario} & \textbf{CO$_2$ (kg/year)} & \textbf{Reduction} \\
+\midrule
+No PV, no EMS & 7,067 & --- \\
+PV + rule-based EMS & 4,139 & $-41.4\%$ \\
+PV + intelligent EMS & $\sim$3,208 & $-54.6\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textit{Note: The intelligent EMS projection assumes the 22.5\% grid reduction observed over 14 summer days is representative of annual performance. A full 365-day optimization comparison would provide a more accurate figure.}

@@ -1,0 +1,20 @@
+\chapter{Conclusion}
+\label{ch:conclusion}
+
+This project designed, implemented, and evaluated an AI-based smart energy management system for a solar-powered building. The system integrates real-time IoT monitoring, machine learning forecasting, anomaly detection, and MILP-based optimization into a cohesive architecture spanning hardware, software, and intelligence layers.
+
+The key contributions and findings are:
+
+\begin{enumerate}
+    \item \textbf{Forecasting:} XGBoost achieves a consumption forecast RMSE of 73~W ($R^2 = 0.994$) on the test set, representing a 92\% improvement over the naive baseline. This level of accuracy enables effective day-ahead energy dispatch planning.
+
+    \item \textbf{Optimization:} The MILP-based EMS reduces grid imports by 22.5\% and increases PV self-consumption from 81.4\% to 96.0\% compared to a conventional rule-based strategy. Peak grid demand is reduced by 37.1\%, and CO$_2$ emissions decrease by 22.5\%.
+
+    \item \textbf{Anomaly Detection:} The statistical threshold method detects 71\% of injected anomalies, providing a practical first line of defense for identifying equipment malfunctions or unusual consumption patterns.
+
+    \item \textbf{System Design:} The three-layer architecture (physical, digital, intelligence) provides clear separation of concerns. The simulation module enables complete system development and testing without hardware. The graceful fallback from MILP to rule-based dispatch ensures continuous operation under all conditions.
+
+    \item \textbf{Practical Implementation:} The entire software stack runs on commodity hardware (estimated prototype cost: 310--440~MAD), uses open-source tools, and is documented for reproducibility. The 8-page Streamlit dashboard provides professional visualization for building operators.
+\end{enumerate}
+
+The project demonstrates that the combination of ML forecasting, mathematical optimization, and IoT monitoring can deliver measurable energy and environmental improvements for small buildings in the Moroccan context. The system is ready for validation with real sensor data from a physical PV installation, which represents the natural next step toward practical deployment.

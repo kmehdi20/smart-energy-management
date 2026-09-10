@@ -1,0 +1,122 @@
+\chapter{Experimental Results}
+\label{ch:results}
+
+All results in this chapter are derived from the 365-day synthetic simulation dataset (seed~=~42). No result is fabricated or estimated without supporting computation.
+
+\section{Energy System Performance (Annual)}
+
+\begin{table}[H]
+\centering
+\caption{Annual energy metrics (365 days, rule-based baseline).}
+\label{tab:annual_energy}
+\begin{tabular}{lr}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+PV Generation & 5,253 kWh (14.4 kWh/day) \\
+Load Consumption & 10,873 kWh (29.8 kWh/day) \\
+Grid Import & 6,367 kWh (17.4 kWh/day) \\
+PV Self-Consumption & 85.5\% \\
+Self-Sufficiency & 41.4\% \\
+Peak Load & 16,935 W \\
+Peak PV & 3,143 W \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Battery Performance}
+
+\begin{table}[H]
+\centering
+\caption{Annual battery performance.}
+\begin{tabular}{lr}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Total Energy Charged & 1,119 kWh \\
+Total Energy Discharged & 1,012 kWh \\
+Round-trip Efficiency & 90.4\% \\
+Average SOC & 26.9\% \\
+Approximate Full Cycles & 198/year \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The measured round-trip efficiency (90.4\%) is consistent with the design parameters ($\eta_{\text{ch}} \times \eta_{\text{dis}} = 0.95 \times 0.95 = 0.9025$). The low average SOC (26.9\%) indicates the battery is frequently near its minimum, suggesting the 5.12~kWh capacity is well-utilized but could benefit from a larger battery in a real deployment.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/soc_distribution.png}
+    \caption{Battery SOC distribution over 365 days.}
+    \label{fig:soc_dist}
+\end{figure}
+
+At 198 cycles per year, the LiFePO4 battery's 4,000-cycle life corresponds to approximately 20 years of expected service.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/monthly_energy.png}
+    \caption{Monthly energy breakdown: PV generation, load consumption, and grid import.}
+    \label{fig:monthly_energy}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/hourly_profiles.png}
+    \caption{Average hourly power profiles over 365 days.}
+    \label{fig:hourly_profiles}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/daily_self_consumption.png}
+    \caption{Daily self-consumption and self-sufficiency trends.}
+    \label{fig:daily_sc}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/load_duration_curve.png}
+    \caption{Load duration curve (365 days).}
+    \label{fig:load_duration}
+\end{figure}
+
+\section{Optimization Results (14 Summer Days)}
+
+\begin{table}[H]
+\centering
+\caption{Optimization comparison: Baseline vs Intelligent EMS (14 summer days).}
+\label{tab:optimization_results}
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Metric} & \textbf{Baseline} & \textbf{Optimized} & \textbf{Improvement} \\
+\midrule
+Grid Import (kWh) & 213.1 & 165.1 & $-22.5\%$ \\
+Total Cost (MAD) & 255.74 & 244.80 & $-4.3\%$ \\
+Peak Grid Demand (W) & 14,065 & 8,840 & $-37.1\%$ \\
+Self-Consumption (\%) & 81.4 & 96.0 & $+14.6$ pp \\
+CO$_2$ Emissions (kg) & 138.5 & 107.3 & $-22.5\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The MILP optimizer achieves a 22.5\% reduction in grid imports and increases PV self-consumption from 81.4\% to 96.0\%. Peak grid demand is reduced by 37.1\% through better battery scheduling. The cost reduction is more modest (4.3\%) because the flat tariff rate limits the economic benefit of load shifting; a stronger time-of-use tariff would amplify this.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/optimization_comparison.png}
+    \caption{Optimization comparison: baseline vs intelligent EMS across key metrics.}
+    \label{fig:opt_comparison}
+\end{figure}
+
+\section{Forecasting Results Summary}
+
+The best consumption model (XGBoost) achieves:
+\begin{itemize}[nosep]
+    \item Test MAE: 38.0~W
+    \item Test RMSE: 73.1~W
+    \item Test MAPE: 3.3\%
+    \item Test $R^2$: 0.9941
+\end{itemize}
+
+This represents a 92\% reduction in RMSE compared to the naive baseline (882~W $\to$ 73~W), validating the use of ML for consumption forecasting.

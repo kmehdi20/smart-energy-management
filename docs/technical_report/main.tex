@@ -1,0 +1,142 @@
+\documentclass[12pt,a4paper,oneside]{report}
+
+% ── Packages ──────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage[nottoc]{tocbibind}
+\usepackage{pdfpages}
+
+% ── Colors ────────────────────────────────────────────────
+\definecolor{codeblue}{RGB}{52,101,164}
+\definecolor{codegray}{RGB}{128,128,128}
+\definecolor{codegreen}{RGB}{46,139,87}
+\definecolor{backcolor}{RGB}{248,248,248}
+
+% ── Code Listings ─────────────────────────────────────────
+\lstdefinestyle{pythonstyle}{
+    backgroundcolor=\color{backcolor},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{codeblue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{orange},
+    basicstyle=\ttfamily\footnotesize,
+    breaklines=true,
+    numbers=left,
+    numbersep=5pt,
+    frame=single,
+    tabsize=4,
+    language=Python,
+}
+\lstset{style=pythonstyle}
+
+% ── Headers ───────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\leftmark}
+\fancyhead[R]{\small AI-Based Smart Energy Management System}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ── Line Spacing ──────────────────────────────────────────
+\onehalfspacing
+
+% ── Hyperlinks ────────────────────────────────────────────
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!60!black,
+    citecolor=green!50!black,
+    urlcolor=blue!70!black,
+}
+
+% ══════════════════════════════════════════════════════════
+\begin{document}
+
+% ── Cover Page ────────────────────────────────────────────
+\input{chapters/00_cover}
+
+% ── Front Matter ──────────────────────────────────────────
+\pagenumbering{roman}
+\input{chapters/01_abstract}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+
+% ── Main Matter ───────────────────────────────────────────
+\pagenumbering{arabic}
+
+\input{chapters/02_introduction}
+\input{chapters/03_problem_statement}
+\input{chapters/04_literature_review}
+\input{chapters/05_system_architecture}
+\input{chapters/06_pv_system}
+\input{chapters/07_energy_management}
+\input{chapters/08_iot_architecture}
+\input{chapters/09_data_acquisition}
+\input{chapters/10_ml_methodology}
+\input{chapters/11_forecasting}
+\input{chapters/12_anomaly_detection}
+\input{chapters/13_optimization}
+\input{chapters/14_simulation}
+\input{chapters/15_implementation}
+\input{chapters/16_results}
+\input{chapters/17_economic_analysis}
+\input{chapters/18_environmental_analysis}
+\input{chapters/19_limitations}
+\input{chapters/20_conclusion}
+
+% ── Bibliography ──────────────────────────────────────────
+\begin{thebibliography}{99}
+
+\bibitem{iea2024} International Energy Agency, ``World Energy Outlook 2024,'' IEA, Paris, 2024.
+
+\bibitem{onee} Office National de l'Électricité et de l'Eau Potable (ONEE), ``Tarification de l'Énergie Électrique,'' \url{http://www.one.org.ma}.
+
+\bibitem{irena2023} IRENA, ``Renewable Power Generation Costs in 2023,'' International Renewable Energy Agency, Abu Dhabi, 2023.
+
+\bibitem{xgboost} T.~Chen and C.~Guestrin, ``XGBoost: A Scalable Tree Boosting System,'' in \emph{Proc. 22nd ACM SIGKDD}, 2016, pp.~785--794.
+
+\bibitem{sklearn} F.~Pedregosa \emph{et al.}, ``Scikit-learn: Machine Learning in Python,'' \emph{JMLR}, vol.~12, pp.~2825--2830, 2011.
+
+\bibitem{pulp} S.~Mitchell, M.~O'Sullivan, and I.~Dunning, ``PuLP: A Linear Programming Toolkit for Python,'' 2011.
+
+\bibitem{mqtt} A.~Banks and R.~Gupta, ``MQTT Version 3.1.1,'' OASIS Standard, 2014.
+
+\bibitem{esp32} Espressif Systems, ``ESP32 Technical Reference Manual,'' 2023.
+
+\bibitem{isolationforest} F.~T.~Liu, K.~M.~Ting, and Z.-H.~Zhou, ``Isolation Forest,'' in \emph{Proc. IEEE ICDM}, 2008, pp.~413--422.
+
+\bibitem{ems_review} A.~Sinha \emph{et al.}, ``Review of Energy Management Systems for Microgrids,'' \emph{Renewable and Sustainable Energy Reviews}, vol.~136, 2021.
+
+\bibitem{morocco_energy} Moroccan Ministry of Energy, ``Stratégie Énergétique Nationale 2030,'' 2024.
+
+\bibitem{lifep04} A.~Wang \emph{et al.}, ``A comprehensive review of LiFePO4 battery technology,'' \emph{Journal of Power Sources}, vol.~321, pp.~1--12, 2016.
+
+\end{thebibliography}
+
+% ── Appendices ────────────────────────────────────────────
+\appendix
+\input{chapters/A_appendix}
+
+\end{document}

@@ -1,0 +1,32 @@
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+This project presents the design, implementation, and evaluation of an AI-based smart energy management system (EMS) for a solar-powered building. The system integrates a 4~kWp photovoltaic installation with a 5.12~kWh LiFePO4 battery and intelligent load scheduling to minimize grid dependency and electricity costs.
+
+The architecture combines three layers: a physical IoT layer (ESP32 microcontroller with energy meters and environmental sensors), a software layer (Python backend with MQTT communication and SQLite/PostgreSQL database), and an intelligence layer (machine learning forecasting, anomaly detection, and optimization-based dispatch).
+
+Energy consumption forecasting is performed using XGBoost, achieving a Mean Absolute Error of 38~W and $R^2 = 0.994$ on the test set. Anomaly detection uses a statistical threshold method with 71\% recall for identifying unusual consumption patterns. The energy dispatch is optimized using Mixed Integer Linear Programming (MILP) with the PuLP solver, which schedules battery charge/discharge and flexible loads to maximize PV self-consumption.
+
+A comprehensive simulation environment generates realistic synthetic data for a Moroccan residential building, enabling full system testing without physical hardware. Performance comparison between a conventional rule-based EMS and the AI-optimized EMS over 14 summer days demonstrates:
+
+\begin{itemize}[nosep]
+    \item 22.5\% reduction in grid imports
+    \item 14.6 percentage point increase in PV self-consumption (81.4\% $\to$ 96.0\%)
+    \item 37.1\% reduction in peak grid demand
+    \item 22.5\% reduction in CO$_2$ emissions
+\end{itemize}
+
+The system is fully open-source, containerized, and documented for reproducibility.
+
+\vspace{0.5cm}
+\noindent\textbf{Keywords:} Smart energy management, photovoltaic, battery storage, machine learning, XGBoost, MILP optimization, IoT, ESP32, MQTT, self-consumption, Morocco.
+
+\chapter*{Résumé}
+\addcontentsline{toc}{chapter}{Résumé}
+
+Ce projet présente la conception, la mise en \oe uvre et l'évaluation d'un système intelligent de gestion de l'énergie (EMS) basé sur l'intelligence artificielle pour un bâtiment alimenté par l'énergie solaire. Le système intègre une installation photovoltaïque de 4~kWp avec une batterie LiFePO4 de 5,12~kWh et une planification intelligente des charges pour minimiser la dépendance au réseau et les coûts d'électricité.
+
+La comparaison des performances entre un EMS conventionnel à base de règles et l'EMS optimisé par IA sur 14 jours d'été démontre une réduction de 22,5\% des importations du réseau, une augmentation de 14,6 points de pourcentage de l'autoconsommation PV, et une réduction de 22,5\% des émissions de CO$_2$.
+
+\vspace{0.5cm}
+\noindent\textbf{Mots-clés:} Gestion intelligente de l'énergie, photovoltaïque, stockage par batterie, apprentissage automatique, optimisation MILP, IoT, ESP32, autoconsommation, Maroc.

@@ -1,0 +1,62 @@
+\chapter{Data Acquisition}
+\label{ch:data}
+
+\section{Measurement Points}
+
+Table~\ref{tab:sensors} lists the sensors used in the prototype.
+
+\begin{table}[H]
+\centering
+\caption{Sensor and component specifications.}
+\label{tab:sensors}
+\begin{tabularx}{\textwidth}{lllcX}
+\toprule
+\textbf{Component} & \textbf{Measures} & \textbf{Protocol} & \textbf{Mandatory} & \textbf{Safety} \\
+\midrule
+PZEM-004T v3 & AC V, I, P, E, PF, f & UART & Yes & Galvanic isolation via CT clamp \\
+INA226 $\times$2 & DC V, I (PV + battery) & I$^2$C & Yes & Low-voltage DC only \\
+DHT22 & Temperature, humidity & Digital & Yes & 3.3V logic \\
+BH1750 & Light level (lux) & I$^2$C & Optional & 3.3V logic \\
+ESP32 DevKit V1 & Data acquisition + Wi-Fi & --- & Yes & 3.3--5V DC only \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Safety Boundary}
+
+The ESP32 and breadboard operate exclusively at 3.3--5~V DC. All mains-voltage (220~V AC) measurement is performed inside the PZEM-004T module, which provides galvanic isolation between the mains circuit and the TTL serial output. The current transformer (CT) clamp clips around an insulated wire without making electrical contact with the conductor.
+
+\section{Time Resolution}
+
+The ESP32 reads sensors every 10--15 seconds. These raw readings are aggregated to 15-minute averages before database storage. The 15-minute resolution was chosen because it:
+\begin{itemize}[nosep]
+    \item matches common utility metering intervals,
+    \item provides sufficient temporal granularity for load forecasting and optimization,
+    \item keeps storage requirements manageable (35,040 rows/year per measurement table),
+    \item aligns with the 96-step optimization horizon (24~h / 15~min = 96 steps).
+\end{itemize}
+
+\section{Bill of Materials}
+
+Table~\ref{tab:bom} presents the estimated component costs.
+
+\begin{table}[H]
+\centering
+\caption{Bill of Materials (estimated prices in MAD).}
+\label{tab:bom}
+\begin{tabular}{llcrl}
+\toprule
+\textbf{Component} & \textbf{Purpose} & \textbf{Qty} & \textbf{Price (MAD)} & \textbf{Mandatory} \\
+\midrule
+ESP32 DevKit V1 & Microcontroller & 1 & 60--80 & Yes \\
+PZEM-004T v3 + CT & AC metering & 1 & 80--120 & Yes \\
+INA226 breakout & DC metering & 2 & 60--80 & Yes \\
+DHT22 & Temp/humidity & 1 & 30--50 & Yes \\
+BH1750 & Light sensor & 1 & 20--30 & Optional \\
+Breadboard + jumpers & Prototyping & 1 & 40--60 & Yes \\
+USB cable + adapter & Power & 1 & 35--50 & Yes \\
+\midrule
+\multicolumn{3}{l}{\textbf{Total (mandatory)}} & \textbf{310--440} & \\
+\bottomrule
+\end{tabular}
+\end{table}
