@@ -1,0 +1,152 @@
+/* Smart Energy Management — Custom Dashboard Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Hide Streamlit chrome */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+[data-testid="stToolbar"] {visibility: hidden;}
+
+/* Base */
+html, body, [class*="css"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    background-color: #0F1923 !important;
+    color: #F0F4F8 !important;
+}
+
+.stApp {
+    background-color: #0F1923 !important;
+}
+
+/* Main content area */
+.main .block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    max-width: 1200px;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background-color: #0A1219 !important;
+    border-right: 1px solid #1E2D3D !important;
+}
+
+[data-testid="stSidebar"] * {
+    color: #8899AA !important;
+}
+
+/* Page title — amber left border, NOT underline */
+h1 {
+    color: #F0F4F8 !important;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    border-left: 3px solid #E8A020 !important;
+    border-bottom: none !important;
+    padding-left: 0.75rem !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0.25rem !important;
+    line-height: 1.3 !important;
+}
+
+/* Subtitle paragraph — remove any decoration */
+h1 + p, h1 + div p {
+    color: #8899AA !important;
+    font-size: 0.82rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+    text-decoration: none !important;
+    border: none !important;
+}
+
+/* Section headers */
+h2 {
+    color: #C8D8E8 !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    margin-top: 1.5rem !important;
+    border: none !important;
+}
+
+h3 {
+    color: #8899AA !important;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    margin-top: 1.25rem !important;
+    margin-bottom: 0.5rem !important;
+    border: none !important;
+}
+
+/* Dividers */
+hr {
+    border: none !important;
+    border-top: 1px solid #1E2D3D !important;
+    margin: 1.25rem 0 !important;
+}
+
+/* Metric cards */
+[data-testid="metric-container"] {
+    background-color: #1A2B3C !important;
+    border: 1px solid #243444 !important;
+    border-radius: 3px !important;
+    padding: 0.9rem 1rem !important;
+}
+
+[data-testid="metric-container"] label {
+    color: #668096 !important;
+    font-size: 0.68rem !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.07em !important;
+}
+
+[data-testid="stMetricValue"] {
+    color: #F0F4F8 !important;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+}
+
+[data-testid="stMetricDelta"] {
+    font-size: 0.72rem !important;
+}
+
+/* Slider */
+[data-testid="stSlider"] .st-emotion-cache-1dp5vir,
+[data-testid="stSlider"] [class*="thumb"] {
+    background-color: #E8A020 !important;
+}
+
+/* Selectbox */
+[data-testid="stSelectbox"] > div > div {
+    background-color: #1A2B3C !important;
+    border: 1px solid #243444 !important;
+    color: #F0F4F8 !important;
+    border-radius: 3px !important;
+}
+
+/* Warnings / info */
+.stAlert {
+    background-color: #1A2B3C !important;
+    border: 1px solid #243444 !important;
+    border-radius: 3px !important;
+    color: #C8D8E8 !important;
+}
+
+/* Dataframe */
+[data-testid="stDataFrame"] {
+    border: 1px solid #243444 !important;
+    border-radius: 3px !important;
+}
+
+/* Multiselect tags */
+[data-testid="stMultiSelect"] span[data-baseweb="tag"] {
+    background-color: #243444 !important;
+    color: #F0F4F8 !important;
+}
+
+/* Spinner */
+[data-testid="stSpinner"] {
+    color: #E8A020 !important;
+}
