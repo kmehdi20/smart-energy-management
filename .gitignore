@@ -37,3 +37,33 @@ Thumbs.db
 
 data/
 
+
+docs/
+
+
+docs/
+
+
+ml/models/*.joblib
+
+
+ml/data/raw/*.csv
+
+
+ml/data/processed/*.csv
+
+
+analysis/reports/
+
+
+analysis/plots/
+
+
+ml/forecasting/plots/
+
+
+ml/anomaly_detection/plots/
+
+
+optimization/plots/
+
